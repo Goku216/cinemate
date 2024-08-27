@@ -14,7 +14,9 @@ export const MovieDetail = () => {
   useEffect(() => {
     async function fetchMovie() {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${params.id}?api_key=86b5c9bac7077473ec2aef424a04cbe7`
+        `https://api.themoviedb.org/3/movie/${params.id}?api_key=${
+          import.meta.env.VITE_API_KEY
+        }`
       );
       const json = await response.json();
       setMovie(json);
