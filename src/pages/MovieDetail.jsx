@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Backup from "../assets/backup.png";
+import { useTitle } from "../hooks/useTitle";
 
 export const MovieDetail = () => {
   const params = useParams();
@@ -20,6 +21,9 @@ export const MovieDetail = () => {
     }
     fetchMovie();
   }, []);
+
+  useTitle(movie.title);
+
   return (
     <main>
       <section className="flex justify-around flex-wrap py-5">
