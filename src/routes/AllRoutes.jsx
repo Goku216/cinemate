@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import React from "react";
-import { MovieList, MovieDetail, Search, PageNotFound } from "../pages";
+import { MovieList, MovieDetail, Search, PageNotFound, PlayMovie } from "../pages";
 
 export const AllRoutes = () => {
   return (
@@ -11,6 +11,7 @@ export const AllRoutes = () => {
           element={<MovieList apiPath="movie/now_playing" title="Home" />}
         />
         <Route path="movie/:id" element={<MovieDetail />} />
+        <Route path="playing/movie/:id" element={<PlayMovie />}/>
         <Route
           path="movies/popular"
           element={<MovieList apiPath="movie/popular" title="Popular" />}

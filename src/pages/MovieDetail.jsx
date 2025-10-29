@@ -1,8 +1,9 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Backup from "../assets/backup.png";
 import { useTitle } from "../hooks/useTitle";
+import { Play } from "lucide-react";
 
 export const MovieDetail = () => {
   const params = useParams();
@@ -25,6 +26,7 @@ export const MovieDetail = () => {
   }, [params.id]);
 
   useTitle(movie.title);
+  console.log(movie.id)
 
   return (
     <main>
@@ -33,9 +35,28 @@ export const MovieDetail = () => {
           <img className="rounded" src={image} alt={movie.title} />
         </div>
         <div className="max-w-2xl text-gray-700 text-lg dark:text-white">
-          <h1 className="text-4xl font-bold my-3 text-center lg:text-left">
-            {movie.title}
-          </h1>
+          <div className="flex items-center gap-8 justify-start my-3">
+            <h1 className="text-4xl font-bold text-center lg:text-left">
+              {movie.title}
+            </h1>
+            <Link to={`/playing/movie/${movie.id}`}>
+              <button className="relative group" aria-label="Play video">
+                {/* Outer glow effect */}
+                <div
+                  className={`absolute inset-0 rounded-lg bg-red-500 blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+                ></div>
+
+                {/* Button */}
+                <div
+                  className={`relative px-3 py-1 rounded-lg bg-gradient-to-r from-red-500 to-red-600 flex items-center gap-2 shadow-lg transition-all duration-200 
+          hover:scale-105 hover:shadow-xl scale-100 `}
+                >
+                  <Play className="w-5 h-5 text-white fill-white" />
+                  <span className="text-white font-semibold text-lg">Play</span>
+                </div>
+              </button>
+            </Link>
+          </div>
           <p className="my-4">{movie.overview}</p>
 
           {movie.genres ? (
